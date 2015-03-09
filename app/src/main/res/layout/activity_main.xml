@@ -27,6 +27,7 @@
         </LinearLayout>
     </FrameLayout>
     <fragment
+        android:id="@+id/navigation_drawer"
         android:layout_width="256dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
