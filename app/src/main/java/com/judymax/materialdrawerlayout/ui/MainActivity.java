@@ -1,9 +1,11 @@
-package com.judymax.materialdrawerlayout;
+package com.judymax.materialdrawerlayout.ui;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.judymax.materialdrawerlayout.R;
 
 
 public class MainActivity extends ActionBarActivity {
