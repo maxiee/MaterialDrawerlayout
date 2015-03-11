@@ -1,5 +1,6 @@
 package com.judymax.materialdrawerlayout.ui;
 
+import android.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.judymax.materialdrawerlayout.R;
+import com.judymax.materialdrawerlayout.ui.fragment.Fragment1;
+import com.judymax.materialdrawerlayout.ui.fragment.Fragment2;
+import com.judymax.materialdrawerlayout.ui.fragment.Fragment3;
 import com.judymax.materialdrawerlayout.ui.fragment.NavigationDrawerFragment;
 
 
@@ -27,6 +31,9 @@ public class MainActivity extends ActionBarActivity implements
 
     private int mCurrent;
 
+    private Fragment1 fragment1;
+    private Fragment2 fragment2;
+    private Fragment3 fragment3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +119,49 @@ public class MainActivity extends ActionBarActivity implements
 
     @Override
     public boolean onNavigationDrawerItemSelected(int position) {
+        mCurrent = position;
+
+        try {
+            mDrawerLayout.closeDrawer(Gravity.LEFT);
+        } catch (NullPointerException e) {}
+
+        FragmentManager fragmentManager = getFragmentManager();
+
+        switch (position) {
+            case 0:
+                if (fragment1 == null) {
+                    fragment1 = new Fragment1();
+                }
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container, fragment1)
+                        .commit();
+                setTitle("Fragment1");
+                return true;
+            case 1:
+                if (fragment2 == null) {
+                    fragment2 = new Fragment2();
+                }
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container, fragment2)
+                        .commit();
+                setTitle("Fragment2");
+                return true;
+            case 2:
+                if (fragment3 == null) {
+                    fragment3 = new Fragment3();
+                }
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container, fragment3)
+                        .commit();
+                setTitle("Fragment3");
+                return true;
+            case 3:
+                // settings
+                return false;
+        }
         return true;
     }
 
