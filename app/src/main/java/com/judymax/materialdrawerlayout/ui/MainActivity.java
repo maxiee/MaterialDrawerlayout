@@ -15,13 +15,18 @@ import com.judymax.materialdrawerlayout.R;
 import com.judymax.materialdrawerlayout.ui.fragment.NavigationDrawerFragment;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements
+        NavigationDrawerFragment.NavigationDrawerCallbacks{
 
     protected Toolbar mToolbar;
-    public ActionBarHelper mActionBar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    public ActionBarHelper mActionBar;
+
+    private int mCurrent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class MainActivity extends ActionBarActivity {
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
                 .findFragmentById(R.id.navigation_drawer);
+
+        mCurrent = 0;
     }
 
     private void setUpDrawer() {
@@ -101,6 +108,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onNavigationDrawerItemSelected(int position) {
+        return true;
     }
 
     private class MyDrawerListener implements DrawerLayout.DrawerListener {
